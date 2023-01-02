@@ -1,0 +1,12 @@
+* {
+    font-family: sans-serif;
+}
+
+.display {
+    border: 2px solid black;
+    width: 300px;
+    height: 30px;
+    font-size: 25px;
+    text-align: right;
+    vertical-align: center;
+}
