@@ -81,7 +81,12 @@ const nine = document.querySelector('#nine');
 //STORE NUMBER: OK
 function storeNumber(numberId) {
     if (chosenOperator === undefined) {
-        firstNumber = firstNumber * 10 + numberId;
+        if (lastPressedWasResult) {
+            firstNumber = numberId;
+            updateDisplay('clear');
+        } else {
+            firstNumber = firstNumber * 10 + numberId
+        }
     } else {
         secondNumber = secondNumber * 10 + numberId;
     }
@@ -134,7 +139,7 @@ const resultArea = document.querySelector('.display');
 resultBtn.addEventListener('click', () => {
     console.log(chosenOperator, firstNumber, secondNumber, operate(chosenOperator, firstNumber, secondNumber))
     updateDisplay('result')
-    firstNumber = 0;
+    firstNumber = operate(chosenOperator, firstNumber, secondNumber)
     secondNumber = 0;
     chosenOperator = undefined;
 })
@@ -149,21 +154,27 @@ clearBtn.addEventListener('click', () => {
     chosenOperator = undefined;
 })
 
-let displayValue = "0"
+let displayValue = "0";
+let lastPressedWasResult = false;
 function updateDisplay(parameter) {
     if (parameter === 'clear') {
         displayValue = "0";
+        lastPressedWasResult = false;
     } else if (parameter === 'result') {
         displayValue = operate(chosenOperator, firstNumber, secondNumber);
+        lastPressedWasResult = true;
     } else if (parameter === 0 || parameter === "0") {
         if (displayValue !== "0") {
             displayValue += "0";
+            lastPressedWasResult = false;
         }
     } else {
         if (displayValue === "0") {
             displayValue = parameter;
+            lastPressedWasResult = false;
         } else {
-            displayValue += String(parameter)
+            displayValue += String(parameter);
+            lastPressedWasResult = false;
         }
     }
     resultArea.textContent = displayValue;
