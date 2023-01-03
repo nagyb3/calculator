@@ -178,3 +178,4 @@ function updateDisplay(parameter) {
     }
     resultArea.textContent = displayValue;
 }
+
