@@ -132,7 +132,6 @@ nine.addEventListener('click', () => {
     storeNumber(9); updateDisplay(9)
 })
 
-// TODO: RESULT AREA DOESNT REFRESH WHEN A BUTTON IS PUSHED
 const resultBtn = document.querySelector('.equals');
 const resultArea = document.querySelector('.display');
 
